@@ -1,0 +1,134 @@
+################################
+# السؤال الأول: المستخدمين
+################################
+
+sudo useradd employee                 # إنشاء مستخدم employee
+
+sudo groupadd developers              # إنشاء مجموعة developers (إن لم تكن موجودة)
+
+sudo usermod -aG developers employee  # إضافة employee إلى developers
+
+sudo passwd employee                  # تغيير كلمة المرور
+# أدخل: newpassword456
+
+su - employee                         # الدخول إلى حساب employee
+
+groups                                # التحقق من المجموعات
+
+
+################################
+# السؤال الثاني: الملفات والمجلدات
+################################
+
+cd ~                                  # الرجوع إلى المجلد الرئيسي
+
+mkdir project1                        # إنشاء project1
+mkdir project1/project2               # إنشاء project2 داخل project1
+
+echo "Project Overview" > project1/readme.txt   # إنشاء الملف وكتابة المحتوى
+
+mv project1/readme.txt project1/project2        # نقل الملف إلى project2
+
+mv project1/project2/readme.txt \
+   project1/project2/overview.txt     # تغيير اسم الملف
+
+zip -r project2.zip project1/project2 # ضغط مجلد project2
+
+mkdir archive                         # إنشاء مجلد archive
+
+mv project2.zip archive               # نقل الملف المضغوط
+
+cd archive                            # الدخول إلى archive
+
+unzip project2.zip                    # فك الضغط
+
+cd ..                                 # الرجوع للخلف
+
+rm -r project1                        # حذف project1 (مع محتواه) بدون أخطاء
+
+
+################################
+# السؤال الثالث: الصلاحيات
+################################
+
+chmod 755 archive/project2            # إعطاء صلاحيات 755
+
+chmod 455 archive/project2            # جعل صلاحيات المالك قراءة فقط
+
+ls -ld archive/project2               # عرض الصلاحيات
+
+
+################################
+# السؤال الرابع: سكربت Bash
+################################
+
+nano calc.sh                          # إنشاء سكربت
+
+
+
+
+
+
+
+
+
+
+
+
+#!/bin/bash
+
+read -p "أدخل الرقم الأول: " a        # إدخال الرقم الأول
+read -p "أدخل الرقم الثاني: " b       # إدخال الرقم الثاني
+
+echo "اختر العملية:"
+echo "1) الجمع"
+echo "2) الطرح"
+
+read choice                           # قراءة الاختيار
+
+case $choice in
+  1)
+    echo "النتيجة = $((a + b))"       # عملية الجمع
+    ;;
+  2)
+    echo "النتيجة = $((a - b))"       # عملية الطرح
+    ;;
+  *)
+    echo "خيار غير صحيح"              # اختيار خاطئ
+    ;;
+esac
+
+
+
+
+
+
+chmod +x calc.sh                      # إعطاء صلاحية التنفيذ
+
+./calc.sh                             # تشغيل السكربت
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
